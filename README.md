@@ -1,5 +1,10 @@
-# cs-uy-4613-project
+# cs-uy-4613-project milestone 2
 
-Installation instructions: https://docs.docker.com/get-docker/
-
-Docker Container Terminal Prompt: <img width="1169" alt="Screen Shot 2023-03-25 at 9 24 31 PM" src="https://user-images.githubusercontent.com/65921543/227750461-98d21431-e834-474c-83ae-d49e314ffd57.png">
+title: Sentiment Analysis
+emoji: 😻
+colorFrom: indigo
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.17.0
+app_file: app.py
+pinned: false
