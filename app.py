@@ -12,7 +12,7 @@ if st.button("Run Sentiment Analysis of Text"):
     result = sentiment_pipeline(data)
     label = result[0]["label"]
     score = result[0]["score"]
-    st.write("The classification of the given text is " + label + " with a score of " + score)
+    st.write("The classification of the given text is " + label + " with a score of " + str(score))
 
 
 
