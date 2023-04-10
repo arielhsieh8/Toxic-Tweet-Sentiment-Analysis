@@ -10,7 +10,7 @@ model = st.selectbox("Which pretrained model would you like to use?",("roberta-l
 data = []
 text = st.text_input("Enter text here:","Artificial Intelligence is useful")
 data.append(text)
-if model == "DistilBERT":
+if model == "roberta-large-mnli":
     #1
     if st.button("Run Sentiment Analysis of Text"): 
         model_path = "roberta-large-mnli"
