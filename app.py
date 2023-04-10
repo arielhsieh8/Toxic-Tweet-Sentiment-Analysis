@@ -21,20 +21,32 @@ if model == "DistilBERT":
         label = result[0]["label"]
         score = result[0]["score"]
         st.write("The classification of the given text is " + label + " with a score of " + str(score))
-elif model == "Twitter-roBERTa-base":
+elif model == "twitter-XLM-roBERTa-base":
     #2
     if st.button("Run Sentiment Analysis of Text"): 
         model_path = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
         sentiment_task = pipeline("sentiment-analysis", model=model_path, tokenizer=model_path)
         result = sentiment_task(text)
-        st.write(result)
+        label = result[0]["label"]
+        score = result[0]["score"]
+        st.write("The classification of the given text is " + label + " with a score of " + str(score))
 
 elif model == "bertweet-sentiment-analysis": 
     #3 
     if st.button("Run Sentiment Analysis of Text"): 
         analyzer = create_analyzer(task="sentiment", lang="en")
         result = analyzer.predict(text)
-        st.write(result)
+        if result.output == "POS": 
+            label = "POSITIVE"
+        elif result.output == "NEU": 
+            label = "NEUTRAL"
+        else: 
+            label = "NEGATIVE"
+        
+        neg = result.probas["NEG"]
+        pos = result.probas["POS"]
+        neu = result.probas["NEU"]
+        st.write("The classification of the given text is " + label + " with the percentages broken down as: Positive - " + str(pos) + ", Neutral - " + str(neu) + ", Negative - " + str(neg))
 
 
 
