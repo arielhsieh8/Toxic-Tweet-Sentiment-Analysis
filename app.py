@@ -23,16 +23,18 @@ if model == "DistilBERT":
         st.write("The classification of the given text is " + label + " with a score of " + str(score))
 elif model == "Twitter-roBERTa-base":
     #2
-    model_path = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
-    sentiment_task = pipeline("sentiment-analysis", model=model_path, tokenizer=model_path)
-    result = sentiment_task(text)
-    st.write(result)
+    if st.button("Run Sentiment Analysis of Text"): 
+        model_path = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
+        sentiment_task = pipeline("sentiment-analysis", model=model_path, tokenizer=model_path)
+        result = sentiment_task(text)
+        st.write(result)
 
 elif model == "bertweet-sentiment-analysis": 
     #3 
-    analyzer = create_analyzer(task="sentiment", lang="en")
-    result = analyzer.predict(text)
-    st.write(result)
+    if st.button("Run Sentiment Analysis of Text"): 
+        analyzer = create_analyzer(task="sentiment", lang="en")
+        result = analyzer.predict(text)
+        st.write(result)
 
 
 
