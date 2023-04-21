@@ -12,6 +12,10 @@ model = st.selectbox("Which pretrained model would you like to use?",("roberta-l
 #data = pd.DataFrame(data=d)
 #st.table(data)
 
+data = []
+text = st.text_input("Enter text here:","Artificial Intelligence is useful")
+data.append(text)
+
 if model == "roberta-large-mnli":
     #1
     if st.button("Run Sentiment Analysis of Text"): 
@@ -21,8 +25,8 @@ if model == "roberta-large-mnli":
         label = result[0]["label"]
         score = result[0]["score"]
         d = {'tweet':[model_path],'classification':[label],'score':[score]}
-        data = pd.DataFrame(data=d)
-        st.table(data)
+        dataframe = pd.DataFrame(data=d)
+        st.table(dataframe)
         #st.write("The classification of the given text is " + label + " with a score of " + str(score))
 
 
