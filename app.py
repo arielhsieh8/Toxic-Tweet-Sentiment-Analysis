@@ -1,6 +1,7 @@
 import streamlit as st  #Web App
 from transformers import pipeline
-from pysentimiento import create_analyzer
+import numpy as np 
+import pandas as pd
 
 #title
 st.title("Toxic Tweets")
