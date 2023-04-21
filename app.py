@@ -8,9 +8,22 @@ st.title("Toxic Tweets")
 
 model = st.selectbox("Which pretrained model would you like to use?",("roberta-large-mnli","twitter-XLM-roBERTa-base","bertweet-sentiment-analysis"))
 
-d = {'col1':[1,2],'col2':[3,4]}
-data = pd.DataFrame(data=d)
-st.table(data)
+#d = {'col1':[1,2],'col2':[3,4]}
+#data = pd.DataFrame(data=d)
+#st.table(data)
+
+if model == "roberta-large-mnli":
+    #1
+    if st.button("Run Sentiment Analysis of Text"): 
+        model_path = "roberta-large-mnli"
+        sentiment_pipeline = pipeline(model=model_path)
+        result = sentiment_pipeline(data)
+        label = result[0]["label"]
+        score = result[0]["score"]
+        d = {'tweet':[model_path],'classification':[label],'score':[score]}
+        data = pd.DataFrame(data=d)
+        st.table(data)
+        #st.write("The classification of the given text is " + label + " with a score of " + str(score))
 
 
 # data = []
