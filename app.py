@@ -34,7 +34,7 @@ tweets = ["BlackKite being a faggot",
 
 labels = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
 main_class = []
-toxic_type = []
+toxic_types = []
 
 for i in range(len(tweets)):
     batch = tokenizer(tweets[i], truncation=True, padding='max_length', return_tensors="pt") 
@@ -50,13 +50,13 @@ for i in range(len(tweets)):
         main_class.append((first_max,fm_index))
         second_max = max(probs[2:])
         sm_index = probs.index(second_max)
-        second_class.append((second_max,sm_index))
+        toxic_types.append((second_max,sm_index))
         
 
 # main_class = []
 # toxic_type = []
 d = {'tweet':[tweets],'Main Classification':[labels[main_class[i][1]] for i in range(len(main_class))],'Score':[round(main_class[i][1],3) for i in range(len(main_class))],
-        'Toxicity Type':[labels[second_class[i][1]] for i in range(len(second_class))],'Toxicity Score':[round(second_class[i][1],3) for i in range(len(second_class))]}
+        'Toxicity Type':[labels[toxic_types[i][1]] for i in range(len(toxic_types))],'Toxicity Score':[round(toxic_types[i][1],3) for i in range(len(toxic_types))]}
 dataframe = pd.DataFrame(data=d)
 st.table(dataframe)
    
