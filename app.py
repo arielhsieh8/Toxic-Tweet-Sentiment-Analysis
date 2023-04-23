@@ -21,16 +21,44 @@ st.title("Toxic Tweets")
 tokenizer = AutoTokenizer.from_pretrained("Ariel8/toxic-tweets-classification")
 model = AutoModelForSequenceClassification.from_pretrained("Ariel8/toxic-tweets-classification")
 
-X_train = ["BlackKite being a faggot"]
+tweets = ["BlackKite being a faggot",
+"Yo bitch Ja Rule is more succesful then you'll ever be whats up with you and hating you sad mofuckas...i should bitch slap ur pethedic white faces and get you to kiss my ass you guys sicken me. Ja rule is about pride in da music man. dont diss that shit on him. and nothin is wrong bein like tupac he was a brother too...fuckin white boys get things right next time.,",
+":Dear god this site is horrible.",
+"I think its crap that the link to roggenbier is to this article. Somebody that knows how to do things should change it.",
+":::::I have added more wikilinks to my sections and included more secondary sources as you suggested. For all the citations under human disease section, I went through them and exchanged review articles for the primary sources. Thanks again for all your input!",
+"DJ Robinson is gay as hell! he sucks his dick so much!!!!!",
+"I WILL BURN YOU TO HELL IF YOU REVOKE MY TALK PAGE ACCESS!!!!!!!!!!!!!",
+"um, taking a shot here... Um lets say Three separate people whos wills are to each other.",
+"How dare you vandalize that page about the HMS Beagle! Don't vandalize again, demon!",
+":Thanks for the comment about Wiki-defenderness. I like that one. I usually wikiling Wiki-defender. I agree that at first he was somewhat innocent but now have my doubts as he is being really agressive about the whole matter."]
+
+
 batch = tokenizer(X_train, truncation=True, padding='max_length', return_tensors="pt")
 labels = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
 
-with torch.no_grad():
-  outputs = model(**batch)
-  predictions = torch.sigmoid(outputs.logits)*100
-  probs = predictions[0].tolist()
-  for i in range(len(probs)):
-    st.write(f"{labels[i]}: {round(probs[i], 3)}%")
+results = []
+for b in batch:  
+    with torch.no_grad():
+        outputs = model(**b)
+        predictions = torch.sigmoid(outputs.logits)*100
+        probs = predictions[0].tolist()
+        # for i in range(len(probs)):
+        #     st.write(f"{labels[i]}: {round(probs[i], 3)}%")
+        results.append(probs)
+
+# main_class = []
+# toxic_type = []
+for i in range(len(tweets)): 
+    first_max = max(results[i])
+    fm_index = results[i].index(first_max)
+    second_max = max(results[i][2:])
+    sm_index = results[i].index(second_max)
+    #main_class.append((labels[fm_index],first_max))
+    #toxic_type.append((labels[sm_index],second_max))
+    d = {'tweet':[tweets[i]],'Main Classification':[labels[fm_index]],'Score':[first_max],
+    'Toxicity Type':[labels[sm_index]],'Toxicity Score':[second_max]}
+    dataframe = pd.DataFrame(data=d)
+    st.table(dataframe)
 
 # if model == "roberta-large-mnli":
 #     #1
