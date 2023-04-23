@@ -45,12 +45,12 @@ for i in range(len(tweets)):
         # for i in range(len(probs)):
         #     st.write(f"{labels[i]}: {round(probs[i], 3)}%")
         # results.append(probs)
-        first_max = max(probs)
-        fm_index = probs.index(first_max)
-        main_class.append((first_max,fm_index))
-        second_max = max(probs[2:])
-        sm_index = probs.index(second_max)
-        toxic_types.append((second_max,sm_index))
+    first_max = max(probs)
+    fm_index = probs.index(first_max)
+    main_class.append((first_max,fm_index))
+    second_max = max(probs[2:])
+    sm_index = probs.index(second_max)
+    toxic_types.append((second_max,sm_index))
         
 
 # main_class = []
