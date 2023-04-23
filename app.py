@@ -53,10 +53,10 @@ for i in range(len(tweets)):
     toxic_types.append((second_max,sm_index))
         
 
-# main_class = []
+# main_class = [(23.93,0),(78.987,0)]
 # toxic_type = []
-d = {'tweet':[tweets],'Main Classification':[labels[main_class[i][1]] for i in range(len(main_class))],'Score':[round(main_class[i][1],3) for i in range(len(main_class))],
-        'Toxicity Type':[labels[toxic_types[i][1]] for i in range(len(toxic_types))],'Toxicity Score':[round(toxic_types[i][1],3) for i in range(len(toxic_types))]}
+d = {'tweet':tweets,'Main Classification':[labels[main_class[i][1]] for i in range(len(main_class))],'Score':[round(main_class[i][0],3) for i in range(len(main_class))],
+        'Toxicity Type':[labels[toxic_types[i][1]] for i in range(len(toxic_types))],'Toxicity Score':[round(toxic_types[i][0],3) for i in range(len(toxic_types))]}
 dataframe = pd.DataFrame(data=d)
 st.table(dataframe)
    
