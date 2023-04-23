@@ -36,6 +36,7 @@ tweets = ["BlackKite being a faggot",
 batch = tokenizer(tweets, truncation=True, padding='max_length', return_tensors="pt")
 labels = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
 
+print(batch)
 results = []
 for b in batch:  
     with torch.no_grad():
