@@ -32,34 +32,33 @@ tweets = ["BlackKite being a faggot",
 "How dare you vandalize that page about the HMS Beagle! Don't vandalize again, demon!",
 ":Thanks for the comment about Wiki-defenderness. I like that one. I usually wikiling Wiki-defender. I agree that at first he was somewhat innocent but now have my doubts as he is being really agressive about the whole matter."]
 
-
-batch = tokenizer(tweets, truncation=True, padding='max_length', return_tensors="pt")
 labels = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
 
-print(batch)
-results = []
-for b in batch:  
+for i in range(len(tweets)):
+    batch = tokenizer(tweets[i], truncation=True, padding='max_length', return_tensors="pt") 
     with torch.no_grad():
-        outputs = model(**b)
+        outputs = model(**batch)
         predictions = torch.sigmoid(outputs.logits)*100
         probs = predictions[0].tolist()
         # for i in range(len(probs)):
         #     st.write(f"{labels[i]}: {round(probs[i], 3)}%")
-        results.append(probs)
+        # results.append(probs)
+        first_max = max(probs)
+        fm_index = probs.index(first_max)
+        second_max = max(probs[2:])
+        sm_index = probs.index(second_max)
+        d = {'tweet':[tweets[i]],'Main Classification':[labels[fm_index]],'Score':[round(first_max,3)],
+        'Toxicity Type':[labels[sm_index]],'Toxicity Score':[round(second_max,3)]}
+        dataframe = pd.DataFrame(data=d)
+        st.table(dataframe)
 
 # main_class = []
 # toxic_type = []
-for i in range(len(tweets)): 
-    first_max = max(results[i])
-    fm_index = results[i].index(first_max)
-    second_max = max(results[i][2:])
-    sm_index = results[i].index(second_max)
+# for i in range(len(tweets)): 
+    
     #main_class.append((labels[fm_index],first_max))
     #toxic_type.append((labels[sm_index],second_max))
-    d = {'tweet':[tweets[i]],'Main Classification':[labels[fm_index]],'Score':[first_max],
-    'Toxicity Type':[labels[sm_index]],'Toxicity Score':[second_max]}
-    dataframe = pd.DataFrame(data=d)
-    st.table(dataframe)
+   
 
 # if model == "roberta-large-mnli":
 #     #1
