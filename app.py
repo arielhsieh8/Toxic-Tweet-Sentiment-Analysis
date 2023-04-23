@@ -8,7 +8,7 @@ import pandas as pd
 #title
 st.title("Toxic Tweets")
 
-selection = st.selectbox("Select fine-tuned model",("Ariel8/toxic-tweets-classification","roberta-large-mnli","twitter-XLM-roBERTa-base","bertweet-sentiment-analysis"))
+selection = st.selectbox("Select fine-tuned model",("Ariel8/toxic-tweets-classification","roberta-large-mnli","twitter-XLM-roBERTa-base"))
 
 if selection == "Ariel8/toxic-tweets-classification":
     tokenizer = AutoTokenizer.from_pretrained("Ariel8/toxic-tweets-classification")
@@ -59,7 +59,7 @@ else:
     data = []
     text = st.text_input("Enter text here for Sentiment Analysis:","Artificial Intelligence is useful")
     data.append(text)
-    if model == "roberta-large-mnli":
+    if selection == "roberta-large-mnli":
         #1
         if st.button("Run Sentiment Analysis of Text"): 
             model_path = "roberta-large-mnli"
@@ -68,7 +68,7 @@ else:
             label = result[0]["label"]
             score = result[0]["score"]
             st.write("The classification of the given text is " + label + " with a score of " + str(score))
-    elif model == "twitter-XLM-roBERTa-base":
+    elif selection == "twitter-XLM-roBERTa-base":
         #2
         if st.button("Run Sentiment Analysis of Text"): 
             model_path = "cardiffnlp/twitter-xlm-roberta-base-sentiment"
