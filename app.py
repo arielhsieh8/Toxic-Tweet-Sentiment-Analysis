@@ -33,6 +33,8 @@ tweets = ["BlackKite being a faggot",
 ":Thanks for the comment about Wiki-defenderness. I like that one. I usually wikiling Wiki-defender. I agree that at first he was somewhat innocent but now have my doubts as he is being really agressive about the whole matter."]
 
 labels = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
+main_class = []
+toxic_type = []
 
 for i in range(len(tweets)):
     batch = tokenizer(tweets[i], truncation=True, padding='max_length', return_tensors="pt") 
@@ -45,19 +47,18 @@ for i in range(len(tweets)):
         # results.append(probs)
         first_max = max(probs)
         fm_index = probs.index(first_max)
+        main_class.append((first_max,fm_index))
         second_max = max(probs[2:])
         sm_index = probs.index(second_max)
-        d = {'tweet':[tweets[i]],'Main Classification':[labels[fm_index]],'Score':[round(first_max,3)],
-        'Toxicity Type':[labels[sm_index]],'Toxicity Score':[round(second_max,3)]}
-        dataframe = pd.DataFrame(data=d)
-        st.table(dataframe)
+        second_class.append((second_max,sm_index))
+        
 
 # main_class = []
 # toxic_type = []
-# for i in range(len(tweets)): 
-    
-    #main_class.append((labels[fm_index],first_max))
-    #toxic_type.append((labels[sm_index],second_max))
+d = {'tweet':[tweets],'Main Classification':[labels[main_class[i][1]] for i in range(len(main_class))],'Score':[round(main_class[i][1],3) for i in range(len(main_class))],
+        'Toxicity Type':[labels[second_class[i][1]] for i in range(len(second_class))],'Toxicity Score':[round(second_class[i][1],3) for i in range(len(second_class))]}
+dataframe = pd.DataFrame(data=d)
+st.table(dataframe)
    
 
 # if model == "roberta-large-mnli":
