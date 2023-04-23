@@ -21,7 +21,7 @@ st.title("Toxic Tweets")
 tokenizer = AutoTokenizer.from_pretrained("Ariel8/toxic-tweets-classification")
 model = AutoModelForSequenceClassification.from_pretrained("Ariel8/toxic-tweets-classification")
 
-X_train = ["Why is Owen's retirement from football not mentioned? He hasn't played a game since 2005."]
+X_train = ["BlackKite being a faggot"]
 batch = tokenizer(X_train, truncation=True, padding='max_length', return_tensors="pt")
 labels = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
 
