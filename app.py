@@ -33,7 +33,7 @@ tweets = ["BlackKite being a faggot",
 ":Thanks for the comment about Wiki-defenderness. I like that one. I usually wikiling Wiki-defender. I agree that at first he was somewhat innocent but now have my doubts as he is being really agressive about the whole matter."]
 
 
-batch = tokenizer(X_train, truncation=True, padding='max_length', return_tensors="pt")
+batch = tokenizer(tweets, truncation=True, padding='max_length', return_tensors="pt")
 labels = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
 
 results = []
