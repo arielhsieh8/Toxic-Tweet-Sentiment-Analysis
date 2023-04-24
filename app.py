@@ -40,9 +40,7 @@ if selection == "Ariel8/toxic-tweets-classification":
                 outputs = model(**batch)
                 predictions = torch.sigmoid(outputs.logits)*100
                 probs = predictions[0].tolist()
-                # for i in range(len(probs)):
-                #     st.write(f"{labels[i]}: {round(probs[i], 3)}%")
-                # results.append(probs)
+
             first_max = max(probs)
             fm_index = probs.index(first_max)
             main_class.append((first_max,fm_index))
@@ -51,8 +49,8 @@ if selection == "Ariel8/toxic-tweets-classification":
             toxic_types.append((second_max,sm_index))
 
 
-        d = {'Tweet':tweets,'Main Classification':[labels[main_class[i][1]] for i in range(len(main_class))],'Score':[round(main_class[i][0],3) for i in range(len(main_class))],
-                'Toxicity Type':[labels[toxic_types[i][1]] for i in range(len(toxic_types))],'Toxicity Score':[round(toxic_types[i][0],3) for i in range(len(toxic_types))]}
+        d = {'Tweet':tweets,'Highest Class':[labels[main_class[i][1]] for i in range(len(main_class))],'Classification Score':[round(main_class[i][0],3) for i in range(len(main_class))],
+                'Toxicity Type':[labels[toxic_types[i][1]] for i in range(len(toxic_types))],'Toxicity Type Score':[round(toxic_types[i][0],3) for i in range(len(toxic_types))]}
         dataframe = pd.DataFrame(data=d)
         st.table(dataframe)
 else: 
