@@ -2,3 +2,8 @@ streamlit
 transformers
 pipeline
 tensorflow
+pysentimiento
+sentencepiece
+torch
+numpy
+pandas
