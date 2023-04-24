@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 #title
-st.title("Toxic Tweets")
+st.title("Toxic Tweet Classification / Sentiment Analysis")
 
 selection = st.selectbox("Select fine-tuned model",("Ariel8/toxic-tweets-classification","roberta-large-mnli","twitter-XLM-roBERTa-base"))
 
@@ -25,7 +25,7 @@ if selection == "Ariel8/toxic-tweets-classification":
     "How dare you vandalize that page about the HMS Beagle! Don't vandalize again, demon!",
     ":Thanks for the comment about Wiki-defenderness. I like that one. I usually wikiling Wiki-defender. I agree that at first he was somewhat innocent but now have my doubts as he is being really agressive about the whole matter."]
 
-    text = st.text_input("Enter Text here for Toxicity Classification:","I hate everything")
+    text = st.text_input("Enter Text here for Toxicity Classification:","Artificial Intelligence is useful")
 
     if st.button("Run Toxicity Classification of Text (and prepopulated Tweets)"): 
         tweets.append(text)
