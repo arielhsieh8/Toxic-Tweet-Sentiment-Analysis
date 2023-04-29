@@ -4,6 +4,7 @@ Landing Page: https://sites.google.com/nyu.edu/cs-uy-4613-intro-to-ai/home
 
 HF Space: https://huggingface.co/spaces/Ariel8/Toxic-Tweets
 
+--------------
 
 Project Documentation: 
 
@@ -11,10 +12,7 @@ Model_FineTune.py
 
 The script trains a model by using the trainer function in the transformers library. It takes a model, in this case, the Distilbert based uncased model, and finetunes the model based on the dataset of toxic tweets that is given in the train.csv file. The training vs validation split was 80% to 20%. The training took approximately 2 hours to complete, based upon the batch size and epochs that the trainer was given. The loss of each step of the training had a generally decreasing trend, and the loss started from 0.522000 and went down to 0.022900 at the end. The test accuracy of the model, which is then calculated on a test set of 1000 values that the trainer did not see, ended up being 0.936, which presents as a high accuracy. Therefore, the finetuning of the model was successful in the multi-class classification task that it was given. The finetuned model was saved and uploaded to the HF repository, where it is accessible to be used through importing, as shown in the App.py file. 
 
-
-
-
-
+--
 
 App.py
 
