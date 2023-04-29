@@ -13,6 +13,9 @@ The script trains a model by using the trainer function in the transformers libr
 
 
 
+
+
+
 App.py
 
 The script utilizes the streamlit API to connect to display the trained model and its functionalities in the huggingface space. Once the user navigates to the HF space, there is a drop down box that allows the user to select which pretrained model they would like to use. 
