@@ -1,5 +1,7 @@
 # cs-uy-4613-project milestone 4
 
+Video Demonstration Link: https://youtu.be/n_iMV2cEJPQ
+
 Landing Page: https://sites.google.com/nyu.edu/cs-uy-4613-intro-to-ai/home 
 
 HF Space: https://huggingface.co/spaces/Ariel8/Toxic-Tweets
